@@ -4,7 +4,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
     <script src="OrbitControls.js"></script>
     <h1>第三回レポート</h1>
- 虹の空間にたくさんの傘を入れた。下の写真のイメージに寄せようとした。
+ 虹の空間にたくさんの傘を入れた。右の写真のイメージに寄せようとした。
     <script>
       // ページの読み込みを待つ
       window.addEventListener('load', init);
@@ -34,12 +34,6 @@
         // カメラコントローラーを作成
         const controls = new THREE.OrbitControls(camera);
         controls.autoRotate = true;
-
-        // helper
-        const gridHelper = new THREE.GridHelper(1000,20); // size, step
-        scene.add(gridHelper);
-        const axisHelper = new THREE.AxisHelper(1000); //軸の長さ　X：赤、Y：緑、z：青
-        scene.add(axisHelper);
         
         //テクスチャロード(画像)
         var textureLoader = new THREE.TextureLoader();
