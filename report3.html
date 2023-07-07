@@ -46,7 +46,7 @@
         var bluetexture = textureLoader.load("akasa.png");
 
         // 平面（虹)を作成
-        var rainbowgeometry = new THREE.PlaneGeometry(5000,1500);
+        var rainbowgeometry = new THREE.PlaneGeometry(2500,750);
         var rainbowmat = new THREE.MeshBasicMaterial({ map: rainbowtexture, side: THREE.DoubleSide });
         var rainbowplane = new THREE.Mesh( rainbowgeometry, rainbowmat );
         rainbowplane.position.set(0, 100, 0);
