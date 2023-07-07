@@ -42,7 +42,6 @@
         //テクスチャロード(画像)
         var textureLoader = new THREE.TextureLoader();
         var rainbowtexture = textureLoader.load("nizi.png");
-        var redtexture = textureLoader.load("aokasa.png");
         var bluetexture = textureLoader.load("akasa.png");
 
         // 平面（虹)を作成
@@ -54,7 +53,7 @@
 
         // マテリアルを作成する
         const material = new THREE.SpriteMaterial({
-          map: new THREE.TextureLoader().load('img/star.png')
+          map: new THREE.TextureLoader().load('aokasa.png')
         });
 
         for (let i = 0; i < 100; i++) {
