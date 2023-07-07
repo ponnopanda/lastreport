@@ -47,8 +47,7 @@
 
         // 平面（虹)を作成
         var rainbowgeometry = new THREE.PlaneGeometry(10000,3000);
-        var rainbowmat = new THREE.MeshBasicMaterial({transparent:true});
-        rainbowmat.map= rainbowtexture;
+        var rainbowmat = new THREE.MeshBasicMaterial({ map: rainbowtexture, side: THREE.DoubleSide });
         var rainbowplane = new THREE.Mesh( rainbowgeometry, rainbowmat );
         rainbowplane.position.set(0, 100, 0);
         scene.add( rainbowplane );
@@ -95,7 +94,6 @@
           renderer.render(scene, camera);
           requestAnimationFrame(tick);
         }
-      }
       }
     </script>
   </head>
