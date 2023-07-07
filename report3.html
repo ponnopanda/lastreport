@@ -56,9 +56,10 @@
         // グループを作成
         const group = new THREE.Group();
         scene.add(group);
-        const geometry = new THREE.BoxGeometry(50, 50, 50);
+        const umrgeometry = new THREE.PlaneGeometry(100,100);
         //const geometry = new THREE.BoxBufferGeometry(50, 50, 50);
-        const material = new THREE.MeshStandardMaterial();
+        umrmat.map= buletexture;
+        const umplane = new THREE.Mesh( umrgeometry, umrmat );
 
         for (let i = 0; i < 1000; i++) {
           const mesh = new THREE.Mesh(geometry, material);
