@@ -46,7 +46,7 @@
         var bluetexture = textureLoader.load("akasa.png");
 
         // 平面（虹)を作成
-        var rainbowgeometry = new THREE.PlaneGeometry(2000,1000);
+        var rainbowgeometry = new THREE.PlaneGeometry(10000,3000);
         var rainbowmat = new THREE.MeshBasicMaterial({transparent:true});
         rainbowmat.map= rainbowtexture;
         var rainbowplane = new THREE.Mesh( rainbowgeometry, rainbowmat );
@@ -57,20 +57,21 @@
         const group = new THREE.Group();
         scene.add(group);
         const umrgeometry = new THREE.PlaneGeometry(100,100);
+        const rainbowmat = new THREE.MeshBasicMaterial({transparent:true});
         //const geometry = new THREE.BoxBufferGeometry(50, 50, 50);
         umrmat.map= buletexture;
         const umplane = new THREE.Mesh( umrgeometry, umrmat );
 
         for (let i = 0; i < 1000; i++) {
-          const mesh = new THREE.Mesh(geometry, material);
-          mesh.position.x = (Math.random() - 0.5) * 2000;
-          mesh.position.y = (Math.random() - 0.5) * 2000;
-          mesh.position.z = (Math.random() - 0.5) * 2000;
-          mesh.rotation.x = Math.random() * 2 * Math.PI;
-          mesh.rotation.y = Math.random() * 2 * Math.PI;
-          mesh.rotation.z = Math.random() * 2 * Math.PI;
+          const umplane = new THREE.Mesh( umrgeometry, umrmat );
+          umplane.position.x = (Math.random() - 0.5) * 2000;
+          umplane.position.y = (Math.random() - 0.5) * 2000;
+          umplane.position.z = (Math.random() - 0.5) * 2000;
+          umplane.rotation.x = Math.random() * 2 * Math.PI;
+          umplane.rotation.y = Math.random() * 2 * Math.PI;
+          umplane.rotation.z = Math.random() * 2 * Math.PI;
           // グループに格納する
-          group.add(mesh);
+          group.add(umplane);
         }
 
      
