@@ -52,26 +52,22 @@
         rainbowplane.position.set(0, 100, 0);
         scene.add( rainbowplane );
 
-        // // グループを作成
-        // const group = new THREE.Group();
-        // scene.add(group);
-        // const umrgeometry = new THREE.PlaneGeometry(100,100);
-        // const rainbowmat = new THREE.MeshBasicMaterial({transparent:true});
-        // //const geometry = new THREE.BoxBufferGeometry(50, 50, 50);
-        // umrmat.map= buletexture;
-        // const umplane = new THREE.Mesh( umrgeometry, umrmat );
+        // マテリアルを作成する
+        const material = new THREE.SpriteMaterial({
+          map: new THREE.TextureLoader().load('img/star.png')
+        });
 
-        // for (let i = 0; i < 1000; i++) {
-        //   const umplane = new THREE.Mesh( umrgeometry, umrmat );
-        //   umplane.position.x = (Math.random() - 0.5) * 2000;
-        //   umplane.position.y = (Math.random() - 0.5) * 2000;
-        //   umplane.position.z = (Math.random() - 0.5) * 2000;
-        //   umplane.rotation.x = Math.random() * 2 * Math.PI;
-        //   umplane.rotation.y = Math.random() * 2 * Math.PI;
-        //   umplane.rotation.z = Math.random() * 2 * Math.PI;
-        //   // グループに格納する
-        //   group.add(umplane);
-        //}
+        for (let i = 0; i < 100; i++) {
+          const sprite = new THREE.Sprite(material);
+          // ランダムな座標に配置
+          sprite.position.x = 1000 * (Math.random() - 0.5);
+          sprite.position.y = 300 * Math.random() - 150;
+          sprite.position.z = 1000 * (Math.random() - 0.5);
+          // 必要に応じてスケールを調整
+          sprite.scale.set(50, 50, 50);
+
+          scene.add(sprite);
+        }
 
      
       　 // 光源（環境光）
