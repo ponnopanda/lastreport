@@ -104,22 +104,6 @@
 
           scene.add(umbp);
         }
-        
-         //球を作成
-        const geometry = new THREE.SphereGeometry(100, 32, 32);
-        const material = new THREE.MeshNormalMaterial();
-        const mesh = new THREE.Mesh(geometry, material);
-        scene.add(mesh);
-
-        renderScene();
-
-        //アニメーション
-        function renderScene() {
-          mesh.position.x += 2;
-          mesh.position.y += 1;
-          requestAnimationFrame(renderScene);
-          renderer.render(scene, camera);
-        }
 
      
       　 // 光源（環境光）
