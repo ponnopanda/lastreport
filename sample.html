@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8'> 
+  <script src="three.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script>
+    var APP = { };
+
+
+    $(document).ready( function() {
+      // Rendererを用意
+      APP.renderer = new THREE.WebGLRenderer( { 'canvas' : $('#canvas')[0] } );
+      APP.renderer.setSize(300, 300);
+
+      // Cameraを用意
+      APP.camera = new THREE.PerspectiveCamera();
+      APP.camera.position.z = 500;
+
+      // Sceneを用意
+      APP.scene = new THREE.Scene();
+      APP.scene.add( APP.camera );
+
+      // 球を作る
+      var sphere = new THREE.CubeGeometry(100, 100, 100);
+      var material = new THREE.MeshLambertMaterial( { color: 0x33ccff } )
+      APP.cube = new THREE.Mesh( sphere, material );
+      APP.scene.add( APP.cube );
+
+      // 光
+      var light = new THREE.SpotLight(0xffffff);
+      light.position.set( 0, 500, 500 );
+      APP.scene.add( light );
+
+      APP.animate();
+    } );
+  </script>
+</head>
+
+<body>
+  <canvas id="canvas" style="border:solid 1px; margin: 30px;">
+    青春キャンパス
+  </canvas>
+</body>
+
+</html>
+APP.moveX = 2;
+    APP. animate = function() {
+      // 150で方向転換
+      if( Math.abs( APP.cube.position.x ) > 150 ) APP.moveX *= -1;
+      // X軸に移動
+      APP.cube.position.x += APP.moveX;
+      // なんとなく回転もさせておく
+      APP.cube.rotation.x += 0.01;
+      APP.cube.rotation.y += 0.01;
+
+      APP.renderer.render(APP.scene, APP.camera);
+      window.requestAnimationFrame( APP.animate );
+    }
