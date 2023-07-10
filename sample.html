@@ -1,63 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/102/three.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas class="stage"></canvas>
 
-<head>
-  <meta charset='utf-8'> 
-  <script src="three.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-  <script>
-    var APP = { };
+    <script>
+      function init() {
+        //レンダラーを作成
+        const renderer = new THREE.WebGLRenderer({
+          canvas: document.querySelector(".stage")
+        });
+        renderer.setSize(window.innerWidth, window.innerHeight);
 
-   APP.moveX = 2;
-    APP. animate = function() {
-      // 150で方向転換
-      if( Math.abs( APP.cube.position.x ) > 150 ) APP.moveX *= -1;
-      // X軸に移動
-      APP.cube.position.x += APP.moveX;
-      // なんとなく回転もさせておく
-      APP.cube.rotation.x += 0.01;
-      APP.cube.rotation.y += 0.01;
+        //シーンを作成
+        const scene = new THREE.Scene();
 
-      APP.renderer.render(APP.scene, APP.camera);
-      window.requestAnimationFrame( APP.animate );
-    }
-    
-    $(document).ready( function() {
-      // Rendererを用意
-      APP.renderer = new THREE.WebGLRenderer( { 'canvas' : $('#canvas')[0] } );
-      APP.renderer.setSize(300, 300);
+        //カメラを作成
+        const camera = new THREE.PerspectiveCamera(
+          50,
+          window.innerWidth / window.innerHeight,
+          0.1,
+          2000
+        );
+        camera.position.set(0, 0, 1000);
 
-      // Cameraを用意
-      APP.camera = new THREE.PerspectiveCamera();
-      APP.camera.position.z = 500;
+        //球を作成
+        const geometry = new THREE.SphereGeometry(100, 32, 32);
+        const material = new THREE.MeshNormalMaterial();
+        const mesh = new THREE.Mesh(geometry, material);
+        scene.add(mesh);
 
-      // Sceneを用意
-      APP.scene = new THREE.Scene();
-      APP.scene.add( APP.camera );
+        renderScene();
 
-      // 球を作る
-      var sphere = new THREE.CubeGeometry(100, 100, 100);
-      var material = new THREE.MeshLambertMaterial( { color: 0x33ccff } )
-      APP.cube = new THREE.Mesh( sphere, material );
-      APP.scene.add( APP.cube );
+        //アニメーション
+        function renderScene() {
+          mesh.position.x += 2;
+          mesh.position.y += 1;
+          requestAnimationFrame(renderScene);
+          renderer.render(scene, camera);
+        }
+      }
 
-      // 光
-      var light = new THREE.SpotLight(0xffffff);
-      light.position.set( 0, 500, 500 );
-      APP.scene.add( light );
-
-      APP.animate();
-    } );
-
-    </html>
-
-  </script>
-</head>
-
-<body>
-  <canvas id="canvas" style="border:solid 1px; margin: 30px;">
-    青春キャンパス
-  </canvas>
-</body>
-
-
+      window.addEventListener("load", init);
+    </script>
+  </body>
+</html>
