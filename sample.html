@@ -8,7 +8,20 @@
   <script>
     var APP = { };
 
+   APP.moveX = 2;
+    APP. animate = function() {
+      // 150で方向転換
+      if( Math.abs( APP.cube.position.x ) > 150 ) APP.moveX *= -1;
+      // X軸に移動
+      APP.cube.position.x += APP.moveX;
+      // なんとなく回転もさせておく
+      APP.cube.rotation.x += 0.01;
+      APP.cube.rotation.y += 0.01;
 
+      APP.renderer.render(APP.scene, APP.camera);
+      window.requestAnimationFrame( APP.animate );
+    }
+    
     $(document).ready( function() {
       // Rendererを用意
       APP.renderer = new THREE.WebGLRenderer( { 'canvas' : $('#canvas')[0] } );
@@ -37,19 +50,7 @@
     } );
 
     </html>
-APP.moveX = 2;
-    APP. animate = function() {
-      // 150で方向転換
-      if( Math.abs( APP.cube.position.x ) > 150 ) APP.moveX *= -1;
-      // X軸に移動
-      APP.cube.position.x += APP.moveX;
-      // なんとなく回転もさせておく
-      APP.cube.rotation.x += 0.01;
-      APP.cube.rotation.y += 0.01;
 
-      APP.renderer.render(APP.scene, APP.camera);
-      window.requestAnimationFrame( APP.animate );
-    }
   </script>
 </head>
 
